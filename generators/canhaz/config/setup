@@ -1,8 +1,0 @@
-#!/bin/sh
-
-GENERATORS="config"
-
-DIR="${MODULE_PATH:-$PWD}/.canhaz"
-
-mkdir -p "$DIR"
-pushd "$DIR" >> /dev/null

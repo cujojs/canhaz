@@ -1,0 +1,30 @@
+# The default type of thing to generate
+DEFAULT_TYPE="canhaz:help"
+
+# Override output dirs to point to whatever you want.  By default
+# canhaz will generate files starting in the current dir.  So only
+# set these if you want to override that behavior.
+#
+# Example 1
+# If you want to explicitly specify an output dir and test output
+# dir.
+# BASE_DIR="/path/to/output/src"
+# TEST_DIR="/path/to/output/test"
+#
+# Example 2
+# If you have a custom canhaz config file in your base project dir,
+# you can tell canhaz to default to generating output in the parent
+# dir of your config.  For example, if your project dir is
+# /Users/brian/Projects/thinger
+# and you have a custom config at
+# /Users/brian/Projects/thinger/.canhaz/config
+# using this setting will cause canhaz to generate files to
+# /Users/brian/Projects/thinger
+# BASE_DIR="$CONFIG_PARENT_DIR"
+# TEST_DIR="$BASEDIR/../test"
+
+# Where to find generators
+GEN_BASE_DIR="$MY_DIR/generators"
+
+# PHP executable
+PHP="/usr/bin/env php"
