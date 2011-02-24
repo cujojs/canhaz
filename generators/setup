@@ -1,0 +1,9 @@
+# Copyright text used in any/all generators.
+COPYRIGHT=`template "${TEMPLATE_DIR}/copyright.txt"`
+
+# Create explicit capitalized and non-capitalized versions of the name
+# instead of forcing the user to specify one or the other
+NAME=`echo "$MODULE" | perl -wp -e '$_ = ucfirst'`
+LNAME=`echo "$MODULE" | perl -wp -e '$_ = lcfirst'`
+
+export COPYRIGHT NAME LNAME

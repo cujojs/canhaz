@@ -1,0 +1,11 @@
+#!/bin/sh
+
+GENERATORS="js"
+
+TEMPLATE_DIR="$MY_DIR/templates"
+
+DIR="$BASE_DIR/$MODULE_BASE"
+
+# Create the view directory and go there
+mkdir -p "$DIR"
+pushd "$DIR" >> /dev/null

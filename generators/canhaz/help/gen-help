@@ -1,0 +1,24 @@
+#!/bin/sh
+
+cat "$CANHAZ_DIR/README.txt"
+
+cat <<EOF
+
+------------------------------------------------------------------------
+Things canhaz knows how to generate
+------------------------------------------------------------------------
+
+EOF
+
+LIST=""
+for g in `ls -1 "$GEN_BASE_DIR"`
+do
+	if [[ -d "$GEN_BASE_DIR/$g" ]]; then
+		if [[ "$DEFAULT_TYPE" = "$g" ]]; then
+			echo "$g (default)"
+		else
+			echo $g
+		fi
+	fi
+done
+echo $LIST

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+msg " ${MODULE_PATH:-.}/.canhaz/config"
+cp "$CANHAZ_DIR/config" config

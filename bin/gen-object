@@ -1,0 +1,80 @@
+#!/bin/sh
+
+OBJECT_TYPE="$1"
+shift
+USER_GENERATORS="$@"
+RELPATH="$MY_BIN_DIR/relpath.php"
+
+#
+# Outputs the relative path between two paths, specifically, from
+# starting path to destination path.  That is, if you were in the
+# starting path dir and did "cd <result of relpath>", you'd end up
+# in destination path dir.
+# Params:
+# $1 - destination path
+# $2 - starting path
+#
+function relpath {
+	# Call php relpath function (see relpath.php), but trim off
+	# the leading "./" it always prepends
+	$PHP ${RELPATH} "$1" "$2" | sed -E 's/^\.\///g'
+}
+
+#
+# Generate one file for the supplied type of thing, using the supplied generator
+# Params:
+# $1 - type of thing, e.g. "view"
+# $2 - generator, e.g. "html"
+#
+function generate {
+	local GEN_EXE="$1/$2"
+
+	execute "$GEN_EXE" "Don't know how to generate $2 for $1"
+}
+
+#
+# Execute the specified generator script, or print an error if the script
+# doesn't exist
+#
+function execute {
+	local EXE="${GEN_BASE_DIR}/$1"
+	# echo "Executing $EXE"
+
+	# If the requested file exists, execute it
+	# If it doesn't, and error message was supplied, print it
+	if [[ -f "$EXE" ]]; then
+		sh "$EXE"
+	elif [[ "$2" != "" ]]; then
+		err "$2"
+	fi
+}
+
+export -f template relpath
+
+#
+# Ok, go!
+# Generate files
+#
+msg "Generating $OBJECT_TYPE"
+
+export MY_DIR="${GEN_BASE_DIR}/$OBJECT_TYPE"
+
+# Run type-specific setup if present
+load "$OBJECT_TYPE/setup"
+
+# Check to see if user has overridden the list of generators
+GENERATORS=${USER_GENERATORS:-$GENERATORS}
+
+# If there are no generators to run, exit with an error
+if [[ "$GENERATORS" = "" ]]; then
+	fail "No generators specified on command line and no default generators configured for $OBJECT_TYPE"
+fi
+
+# Run all generators
+for GEN in $GENERATORS
+do
+	generate "$OBJECT_TYPE" "gen-$GEN"
+done
+
+# Run type-specific teardown if present
+load "$OBJECT_TYPE/teardown"

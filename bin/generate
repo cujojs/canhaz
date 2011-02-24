@@ -1,0 +1,200 @@
+#!/bin/sh
+#############################################################
+#
+# canhaz generator driver
+#
+# This script drives the generation of files by setting up
+# the general canhaz environment, paths, etc., loading the
+# config, and then executing the setup, generator, and
+# teardown scripts
+#
+#############################################################
+
+ME=`basename $0`
+USAGE="Usage: $ME [--force] module_path [generators]"
+VERSION="v1.0"
+
+MY_DIR="$HOME/.canhaz"
+MY_BIN_DIR="$MY_DIR/bin"
+GEN_OBJECT="$MY_BIN_DIR/gen-object"
+
+#
+# Print a message.  Generator plugins should use this instead of echo
+#
+function msg {
+	echo "$@"
+}
+
+#
+# Print an error to stderr
+#
+function err {
+	echo "ERROR: $@" >&2
+}
+
+#
+# Print an error and exit with the supplied exit value, or 1 if no
+# exit value specified
+#
+function fail {
+	err "$1"
+	exit $2||1
+}
+
+function load {
+	local FILE="${GEN_BASE_DIR}/$1"
+	# echo "Loading $FILE"
+
+	# If the requested file exists, execute it
+	# If it doesn't, and error message was supplied, print it
+	if [[ -f "$FILE" ]]; then
+		. "$FILE"
+	elif [[ "$2" != "" ]]; then
+		err "$2"
+	fi
+}
+
+
+#
+# Function to generate content from a template
+# Params:
+#  $1 - template file
+#
+function template {
+	perl -p -e 's/[\$]\{([A-Za-z_][A-Za-z0-9_]+)\}/defined $ENV{$1} ? $ENV{$1} : $&/eg' "$1"
+}
+
+export -f msg err fail load template
+
+#
+# Find config file.  This will try any locations listed first, then search upward,
+# and finally use the default config if no other config has been found.
+#
+function find_config {
+	local DEFAULT_CONFIG="$MY_DIR/config"
+
+	local c
+	for c in "$@"
+	do
+		if [[ -f "$c" ]]; then
+			CONFIG="$c"
+			return 1
+		fi
+	done
+	
+	# Search upward for config
+	local FILE=".canhaz/config"
+	CONFIG=`find_ancestor $FILE`
+	
+	if [[ ! -f "$CONFIG" ]]; then
+		CONFIG="$DEFAULT_CONFIG"
+	fi
+}
+
+#
+# Searches upward in the dir hierarchy to find a file or dir with a particular name
+# Params:
+#  $1 - dir or file name to find
+#  $2 - (optional) directory in which to start searching.  Search will proceed upward
+#       from here.  If not specified, the current working dir will be used.
+#
+function find_ancestor {
+	# Search upward for config
+	local FILE="$1"
+	local DIR=${2:-$PWD}
+
+	while [[ "$DIR" != '/' ]]; do
+	    if [[ -e "$DIR/$FILE" ]]; then
+			echo "$DIR/$FILE"
+			return 1
+	    else
+	        DIR=`dirname $DIR`
+	    fi
+	done
+}
+
+# Defaults
+FORCE=false
+
+# Find config file.
+find_config "./.canhaz/config"
+export CONFIG_DIR=`dirname "$CONFIG"`
+export CONFIG_PARENT_DIR=`dirname "$CONFIG_DIR"`
+
+# Parse command line options.
+for arg in "$@"
+do
+	case "$arg" in
+		-h|--help)
+			msg "$USAGE"
+			exit 0
+			;;
+		-v|--version)
+			msg "$ME $VERSION"
+			exit 0
+			;;
+		-f|--force)
+			FORCE=true
+			shift
+			;;
+		-c|--config)
+			shift
+			CONFIG=$1
+			shift
+			;;
+	esac
+done
+
+BASE_DIR=`pwd`
+TEST_DIR=${BASE_DIR/\/src\/main/\/src\/test}
+
+# We want at least one non-option argument.
+# Remove this block if you don't need it.
+if [ $# -eq 0 ]; then
+	msg "$USAGE"
+	exit 1
+fi
+
+# Load config
+if [[ ! -f "$CONFIG" ]]; then
+	fail "Can't read config: $CONFIG" 1
+fi
+
+. "$MY_DIR/config"
+
+# Figure out what type of thing we're generating
+USER_OBJECT_TYPE=${1//:/\/}
+
+if [[ -d "$GEN_BASE_DIR/$USER_OBJECT_TYPE" ]]; then
+	OBJECT_TYPE=$USER_OBJECT_TYPE
+	shift
+else
+	OBJECT_TYPE="${DEFAULT_TYPE//:/\/}"
+fi
+
+# Get the path/name of the thing
+MODULE_PATH="$1"
+shift
+
+# Command line generator list takes precedent over config
+if [[ "$*" != "" ]]; then
+	USER_GENERATORS="$*"
+fi
+
+MODULE=`basename "$MODULE_PATH"`
+MODULE_BASE=`dirname "$MODULE_PATH"`
+
+CANHAZ_DIR="$MY_DIR"
+
+# Export vars that should be available to templates
+export CANHAZ_DIR ME VERSION PHP MY_DIR MY_BIN_DIR GEN_BASE_DIR MODULE MODULE_BASE BASE_DIR TEST_DIR TEMPLATE_DIR FORCE
+
+# Run the general setup, if it exists
+load "setup"
+
+sh "$GEN_OBJECT" "$OBJECT_TYPE" $USER_GENERATORS
+
+# Run the general teardown, if it exists
+load "teardown"
+
+msg "Done"

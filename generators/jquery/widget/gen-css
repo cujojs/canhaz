@@ -1,0 +1,4 @@
+#!/bin/sh
+
+msg " $MODULE_BASE/$MODULE.css"
+template "$MY_DIR/templates/widget.css" > "$MODULE.css"
