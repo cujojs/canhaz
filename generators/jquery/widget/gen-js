@@ -1,4 +1,0 @@
-#!/bin/sh
-
-msg " $MODULE_BASE/$MODULE.js"
-template "$MY_DIR/templates/widget.js" > "$MODULE.js"

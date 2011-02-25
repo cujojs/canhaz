@@ -1,13 +1,10 @@
-# Copyright text used in any/all generators.
-COPYRIGHT=`template "${TEMPLATE_DIR}/copyright.txt"`
-
 # Collect all gen-* scripts for the object.  These can be overridden in
 # the object's setup script, but this is a reasonable default.
-export GENERATORS=`ls -1 "$GEN_BASE_DIR/$OBJECT_TYPE/gen-"* | sed -E 's/.*\/gen-(.*)$/\1/g'`
+export GENERATORS=`ls -1 "$GEN_BASE_DIR/$OBJECT_TYPE" | grep -E 'gen-.+$' | sed -E 's/.*\/gen-(.*)$/\1/g'`
 
 # Create explicit capitalized and non-capitalized versions of the name
 # instead of forcing the user to specify one or the other
-NAME=`echo "$MODULE" | perl -wp -e '$_ = ucfirst'`
-LNAME=`echo "$MODULE" | perl -wp -e '$_ = lcfirst'`
+NAME=`echo "$MODULE" | $PERL -wp -e '$_ = ucfirst'`
+LNAME=`echo "$MODULE" | $PERL -wp -e '$_ = lcfirst'`
 
-export COPYRIGHT NAME LNAME
+export NAME LNAME

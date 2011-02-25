@@ -1,8 +1,13 @@
+# This is a generated canhaz config file.  Anything you set in
+# this file will override the base configuration.
+
 # Copyright text used in any/all generators.
-COPYRIGHT="Copyright (c) 2011, Your Company, Inc. All rights reserved."
+#COPYRIGHT="Copyright (c) 2011, Your Company, Inc. All rights reserved."
 
 # The default type of thing to generate
-DEFAULT_TYPE="canhaz:help"
+# You can override this to set which generator should be run
+# when one is not specified
+#DEFAULT_TYPE="canhaz:help"
 
 # Override output dirs to point to whatever you want.  By default
 # canhaz will generate files starting in the current dir.  So only
@@ -27,10 +32,11 @@ DEFAULT_TYPE="canhaz:help"
 # TEST_DIR="$BASEDIR/../test"
 
 # Where to find generators
-GEN_BASE_DIR="$MY_DIR/generators"
+# If you want to keep your generators outside of the canhaz install
+# dir, you can point this wherever you want to keep them
+#GEN_BASE_DIR="$MY_DIR/generators"
 
 # PHP executable
-PHP="/usr/bin/env php"
-
-# perl executable
-PERL="/usr/bin/env perl"
+# This should work in most cases, but if you want to use a particular
+# PHP, point to it here.
+#PHP="/usr/bin/env php"

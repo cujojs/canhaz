@@ -27,9 +27,18 @@ function relpath {
 # $2 - generator, e.g. "html"
 #
 function generate {
-	local GEN_EXE="$1/$2"
+	local GEN_EXE="$1/gen-$2"
 
-	execute "$GEN_EXE" "Don't know how to generate $2 for $1"
+	# Try to execute the specific gen type, but if that doesn't exist or fails,
+	# try to execute the generic generator for this object type and pass it
+	# the aspect to be generated.
+	execute "$GEN_EXE"
+	if [ $? -ne 0 ]; then
+		execute "$1/generate" "$2"
+		if [ $? -ne 0 ]; then
+			err "Don't know how to generate $2 for $1"
+		fi
+	fi
 }
 
 #
@@ -37,16 +46,18 @@ function generate {
 # doesn't exist
 #
 function execute {
+	local RET=1
 	local EXE="${GEN_BASE_DIR}/$1"
-	# echo "Executing $EXE"
+	shift
 
 	# If the requested file exists, execute it
-	# If it doesn't, and error message was supplied, print it
+	# If it doesn't return an error
 	if [[ -f "$EXE" ]]; then
-		sh "$EXE"
-	elif [[ "$2" != "" ]]; then
-		err "$2"
+		sh "$EXE" "$@"
+		RET=0
 	fi
+	
+	return $RET
 }
 
 export -f template relpath
@@ -73,7 +84,7 @@ fi
 # Run all generators
 for GEN in $GENERATORS
 do
-	generate "$OBJECT_TYPE" "gen-$GEN"
+	generate "$OBJECT_TYPE" "$GEN"
 done
 
 # Run type-specific teardown if present

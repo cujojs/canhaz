@@ -146,7 +146,6 @@ do
 done
 
 BASE_DIR=`pwd`
-TEST_DIR=${BASE_DIR/\/src\/main/\/src\/test}
 
 # We want at least one non-option argument.
 # Remove this block if you don't need it.
@@ -187,7 +186,7 @@ MODULE_BASE=`dirname "$MODULE_PATH"`
 CANHAZ_DIR="$MY_DIR"
 
 # Export vars that should be available to templates
-export CANHAZ_DIR ME VERSION PHP MY_DIR MY_BIN_DIR GEN_BASE_DIR MODULE MODULE_BASE BASE_DIR TEST_DIR TEMPLATE_DIR FORCE
+export CANHAZ_DIR ME VERSION PHP MY_DIR MY_BIN_DIR GEN_BASE_DIR MODULE MODULE_BASE BASE_DIR TEST_DIR TEMPLATE_DIR FORCE COPYRIGHT
 
 # Run the general setup, if it exists
 load "setup"

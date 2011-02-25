@@ -1,4 +1,8 @@
 #!/bin/sh
 
-msg " ${MODULE_PATH:-.}/.canhaz/config"
-cp "$CANHAZ_DIR/config" config
+DIR="${MODULE_PATH:-.}/.canhaz"
+FILE="$DIR/config"
+msg " $FILE"
+
+mkdir -p "$DIR"
+template "$MY_DIR/templates/config" > "$FILE"

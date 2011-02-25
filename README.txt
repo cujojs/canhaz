@@ -46,3 +46,9 @@ You can list a subset of the components you'd like to generate.  For
 example, when generating a view, if you don't need a strings file, you
 could do: canhaz my/view/MyView js scss css html test (i.e. leaving
 out strings)
+
+------------------------------------------------------------------------
+License
+------------------------------------------------------------------------
+
+Canhaz is available under the MIT license.  See LICENSE.txt for details.
