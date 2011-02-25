@@ -11,7 +11,7 @@
 #############################################################
 
 ME=`basename $0`
-USAGE="Usage: $ME [--force] module_path [generators]"
+USAGE="Usage: $ME [--force] module_type module_path [generators]"
 VERSION="v1.0"
 
 MY_DIR="$HOME/.canhaz"

@@ -13,7 +13,7 @@ and highly-extensible through plugin generators.
 Quick Start
 ------------------------------------------------------------------------
 
-canhaz [--force] [type] module_path [generators]
+canhaz [--force] module_type module_path [generators]
 
 Example: canhaz jquery:widget js/ui.myWidget
 Creates the directory js, if necessary, and generates:
@@ -29,11 +29,9 @@ Force overwriting an existing dir.  By default canhaz will not overwrite
 an existing leaf dir, and it will warn you if you try to do so.  If you
 really want to overwrite it, use the --force :)
 
-type (optional)
-Type of "thing" to generate.  The default is "view", which generates
-all the files necessary for a new View (see above in Quick Start).
-Look in the generators directory to see the kinds of "things" that
-canhaz supports.
+module_type
+Type of "thing" to generate.  Use --help, or look in the generators
+directory to see what things canhaz knows about.
 
 module_path
 Path of the thing to generate.  You can think of this as an AMD
