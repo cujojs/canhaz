@@ -17,6 +17,7 @@ VERSION="v1.0"
 MY_DIR="$HOME/.canhaz"
 MY_BIN_DIR="$MY_DIR/bin"
 GEN_OBJECT="$MY_BIN_DIR/gen-object"
+CANHAZ_DIR="$MY_DIR"
 
 #
 # Print a message.  Generator plugins should use this instead of echo
@@ -161,6 +162,10 @@ fi
 
 . "$MY_DIR/config"
 
+if [[ "$CONFIG" != "$MY_DIR/config" ]]; then
+	. "$CONFIG"
+fi
+
 # Figure out what type of thing we're generating
 USER_OBJECT_TYPE=${1//:/\/}
 
@@ -182,8 +187,6 @@ fi
 
 MODULE=`basename "$MODULE_PATH"`
 MODULE_BASE=`dirname "$MODULE_PATH"`
-
-CANHAZ_DIR="$MY_DIR"
 
 # Export vars that should be available to templates
 export CANHAZ_DIR ME VERSION PHP MY_DIR MY_BIN_DIR GEN_BASE_DIR MODULE MODULE_BASE BASE_DIR TEST_DIR TEMPLATE_DIR FORCE COPYRIGHT

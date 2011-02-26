@@ -3,7 +3,6 @@
 OBJECT_TYPE="$1"
 shift
 USER_GENERATORS="$@"
-RELPATH="$MY_BIN_DIR/relpath.php"
 
 #
 # Outputs the relative path between two paths, specifically, from
@@ -17,7 +16,7 @@ RELPATH="$MY_BIN_DIR/relpath.php"
 function relpath {
 	# Call php relpath function (see relpath.php), but trim off
 	# the leading "./" it always prepends
-	$PHP ${RELPATH} "$1" "$2" | sed -E 's/^\.\///g'
+	$PHP "$MY_BIN_DIR/relpath.php" "$1" "$2" | sed -E 's/^\.\///g'
 }
 
 #
@@ -49,7 +48,7 @@ function execute {
 	local RET=1
 	local EXE="${GEN_BASE_DIR}/$1"
 	shift
-
+	
 	# If the requested file exists, execute it
 	# If it doesn't return an error
 	if [[ -f "$EXE" ]]; then
