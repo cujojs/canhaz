@@ -1,52 +1,62 @@
-------------------------------------------------------------------------
-canhaz generator tool
-
-Author: Brian Cavalier
-------------------------------------------------------------------------
+# canhaz
+### Author: Brian Cavalier
 
 Canhaz is a project bootstrapping tool for generating stub files,
 similar to generator tools found in frameworks such as Ruby on Rails.
 The main difference is that canhaz is completely framework-independent,
 and highly-extensible through plugin generators.
 
-------------------------------------------------------------------------
-Quick Start
-------------------------------------------------------------------------
+## Quick Start
 
-canhaz [--force] module_type module_path [generators]
+### Example
+`canhaz jquery:widget js/ui.myWidget`
 
-Example: canhaz jquery:widget js/ui.myWidget
 Creates the directory js, if necessary, and generates:
- ui.myWidget.js  - jQuery widget skeleton, fill in your code!
- ui.myWidget.css - CSS skeleton for your widget
+ - ui.myWidget.js  - jQuery widget skeleton, fill in your code!
+ - ui.myWidget.css - CSS skeleton for your widget
 
-------------------------------------------------------------------------
-Options
-------------------------------------------------------------------------
+## Boilerplate Sucks
 
---force
+Boilerplate is all that stuff you have to type before you can write
+the code you actually care about.  It's your company copyright.  It's
+your Javascript module wrapper, be it plain Javascript or AMD, or
+your Java package statement and class declaration wrapper.  It's also
+all the stuff you might need to start a project, like much of the
+stuff that is provided by HTML 5 Boilerplate, for example, for an
+HTML site.
+
+Boiletplate is all that stuff that steals minutes of your day, but
+does almost nothing for you.
+
+It's time to stop typing it, and to canhaz it instead.
+
+## Usage
+
+`canhaz [--force] module_type module_path [generators]`
+
+## Options
+
+`--force`
 Force overwriting an existing dir.  By default canhaz will not overwrite
 an existing leaf dir, and it will warn you if you try to do so.  If you
 really want to overwrite it, use the --force :)
 
-module_type
+`module_type`
 Type of "thing" to generate.  Use --help, or look in the generators
 directory to see what things canhaz knows about.
 
-module_path
+`module_path`
 Path of the thing to generate.  You can think of this as an AMD
 module id, or as a relative filesystem path.  The last part of the
 path will be the name of the thing.  Different generators may use
 this information in slightly different ways.
 
-generators (optional)
+`generators` (optional)
 You can list a subset of the components you'd like to generate.  For
 example, when generating a view, if you don't need a strings file, you
 could do: canhaz my/view/MyView js scss css html test (i.e. leaving
 out strings)
 
-------------------------------------------------------------------------
-License
-------------------------------------------------------------------------
+## License
 
 Canhaz is available under the MIT license.  See LICENSE.txt for details.

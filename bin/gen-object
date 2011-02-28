@@ -52,7 +52,11 @@ function execute {
 	# If the requested file exists, execute it
 	# If it doesn't return an error
 	if [[ -f "$EXE" ]]; then
-		sh "$EXE" "$@"
+		if [[ -x "$EXE" ]]; then
+			"$EXE" "$@"
+		else
+			sh "$EXE" "$@"
+		fi
 		RET=0
 	fi
 	
