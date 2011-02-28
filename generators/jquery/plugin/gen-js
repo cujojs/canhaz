@@ -1,4 +1,4 @@
 #!/bin/sh
 
-msg " $MODULE_BASE/$MODULE.js"
+log_file "$MODULE_BASE/$MODULE.js"
 template "$MY_DIR/templates/plugin.js" > "$MODULE.js"
