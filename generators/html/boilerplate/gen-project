@@ -1,0 +1,15 @@
+#!/bin/sh
+
+GIT=`which git`
+GIT_URL="https://github.com/paulirish/html5-boilerplate.git"
+
+log_file "${MODULE_BASE}/${MODULE}/"
+
+mkdir -p "$MODULE_BASE"
+pushd "$MODULE_BASE" >> /dev/null
+
+$GIT clone "$GIT_URL" "$MODULE" >> /dev/null
+
+sed -i .orig -E -e "s/<title><\/title>/<title>$NAME<\/title>/" "$MODULE/index.html"
+
+popd >> /dev/null

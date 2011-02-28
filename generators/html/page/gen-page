@@ -1,0 +1,18 @@
+#!/bin/sh
+
+CURL="`which curl` -s"
+GIT_URL="https://github.com/paulirish/html5-boilerplate/raw/master/index.html"
+
+log_file  "${MODULE_BASE}/${MODULE}.html"
+mkdir -p "$MODULE_BASE"
+pushd "$MODULE_BASE" >> /dev/null
+
+REL_BASE_PATH=`relpath "$BASE_DIR" "$PWD"`
+
+# Grab html5-boilerplate index.html, add title and fix css and js paths
+$CURL "${GIT_URL}" | sed -E \
+	-e "s/<title><\/title>/<title>${NAME}<\/title>/" \
+	-e "s/href=(.)css\//href=\1${REL_BASE_PATH}\/css\//g" \
+	-e "s/src=(.)js\//src=\1${REL_BASE_PATH}\/js\//g" > "$MODULE.html"
+
+popd >> /dev/null
