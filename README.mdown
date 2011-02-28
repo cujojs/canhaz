@@ -1,22 +1,11 @@
 # canhaz
-### Author: Brian Cavalier
 
 Canhaz is a project bootstrapping tool for generating stub files,
 similar to generator tools found in frameworks such as Ruby on Rails.
 The main difference is that canhaz is completely framework-independent,
 and highly-extensible through plugin generators.
 
-## Quick Start
-
-### Example
-`canhaz jquery:widget js/ui.myWidget`
-
-Creates the directory js, if necessary, and generates:
-
-- ui.myWidget.js  - jQuery widget skeleton, fill in your code!
-- ui.myWidget.css - CSS skeleton for your widget
-
-## Boilerplate Sucks
+### Boilerplate sucks.  Unfortunately, it is also *necessary*
 
 Boilerplate is all that stuff you have to type before you can write
 the code you actually care about.  It's your company copyright.  It's
@@ -26,10 +15,19 @@ all the stuff you might need to start a project, like much of the
 stuff that is provided by HTML 5 Boilerplate, for example, for an
 HTML site.
 
-Boiletplate is all that stuff that steals minutes of your day, but
-does almost nothing for you.
+Boiletplate steals minutes of your day, but does almost nothing for
+your project.
 
 It's time to stop typing it, and to canhaz it instead.
+
+## Quick Start
+
+`canhaz jquery:widget js/ui.myWidget`
+
+Creates the directory js, if necessary, and generates:
+
+- ui.myWidget.js  - jQuery widget skeleton, fill in your code!
+- ui.myWidget.css - CSS skeleton for your widget
 
 ## Usage
 
