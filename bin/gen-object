@@ -63,13 +63,32 @@ function execute {
 	return $RET
 }
 
-export -f template relpath
+#
+# Log a message about a directory.  This is intended to be used by a generator
+# to indicate that it is operating in a particular directory.
+#
+function log_dir {
+	msg
+	msg "$1"
+}
+
+#
+# Log a message about file that is being generated.  This is intended to be used
+# by a generator to indicate it is generating a file
+#
+function log_file {
+	msg "  $1"
+}
+
+# Export functions so sub-processes (e.g. generators) can use them
+export -f template relpath log_dir log_file
 
 #
 # Ok, go!
 # Generate files
 #
 msg "Generating $OBJECT_TYPE"
+log_dir "$BASE_DIR"
 
 export MY_DIR="${GEN_BASE_DIR}/$OBJECT_TYPE"
 
