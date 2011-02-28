@@ -12,8 +12,9 @@ and highly-extensible through plugin generators.
 `canhaz jquery:widget js/ui.myWidget`
 
 Creates the directory js, if necessary, and generates:
- - ui.myWidget.js  - jQuery widget skeleton, fill in your code!
- - ui.myWidget.css - CSS skeleton for your widget
+
+- ui.myWidget.js  - jQuery widget skeleton, fill in your code!
+- ui.myWidget.css - CSS skeleton for your widget
 
 ## Boilerplate Sucks
 
