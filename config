@@ -1,8 +1,11 @@
 # Copyright text used in any/all generators.
 COPYRIGHT="Copyright (c) 2011, Your Company, Inc. All rights reserved."
 
+# Default namespace for things to generate
+DEFAULT_NAMESPACE="canhaz"
+
 # The default type of thing to generate
-DEFAULT_TYPE="canhaz:help"
+DEFAULT_TYPE="help"
 
 # Override output dirs to point to whatever you want.  By default
 # canhaz will generate files starting in the current dir.  So only

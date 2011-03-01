@@ -167,13 +167,16 @@ if [[ "$CONFIG" != "$MY_DIR/config" ]]; then
 fi
 
 # Figure out what type of thing we're generating
-USER_OBJECT_TYPE=${1/://}
+USER_OBJECT_TYPE=${1/\.//}
 
 if [[ -d "$GEN_BASE_DIR/$USER_OBJECT_TYPE" ]]; then
 	OBJECT_TYPE=$USER_OBJECT_TYPE
 	shift
+elif [[ -d "$GEN_BASE_DIR/$DEFAULT_NAMESPACE/$USER_OBJECT_TYPE" ]]; then
+	OBJECT_TYPE="$DEFAULT_NAMESPACE/$USER_OBJECT_TYPE"
+	shift
 else
-	OBJECT_TYPE="${DEFAULT_TYPE/://}"
+	OBJECT_TYPE="${DEFAULT_TYPE/\.//}"
 fi
 
 # Get the path/name of the thing
