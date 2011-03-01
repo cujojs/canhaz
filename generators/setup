@@ -1,14 +1,7 @@
 # Collect all gen-* scripts for the object.  These can be overridden in
 # the object's setup script, but this is a reasonable default.
-DEFAULT_NAMESPACE="canhaz"
 
-GEN_PATH="$GEN_BASE_DIR/$OBJECT_TYPE"
-if [[ ! -d "$GEN_PATH" ]]; then
-	OBJECT_TYPE="$DEFAULT_NAMESPACE/$OBJECT_TYPE"
-	GEN_PATH="$GEN_BASE_DIR/$OBJECT_TYPE"
-fi
-
-export GENERATORS=`ls -1 "$GEN_PATH" | grep -E 'gen-.+$' | sed -E 's/gen-(.+)/\1/g'`
+export GENERATORS=`ls -1 "$GEN_BASE_DIR/$OBJECT_TYPE" | grep -E 'gen-.+$' | sed -E 's/gen-(.+)/\1/g'`
 
 # Create explicit capitalized and non-capitalized versions of the name
 # instead of forcing the user to specify one or the other

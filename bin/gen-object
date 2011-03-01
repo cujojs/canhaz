@@ -64,8 +64,8 @@ function execute {
 }
 
 function fail_if_exists {
-	if [[ -e "$1" ]]; then
-		fail "$@"
+	if [[ -e "$1" && $FORCE = false ]]; then
+		fail "$1 already exists.  Use the --force if you want to overwrite"
 	fi
 }
 
@@ -87,7 +87,7 @@ function log_file {
 }
 
 # Export functions so sub-processes (e.g. generators) can use them
-export -f template relpath log_dir log_file
+export -f template relpath fail_if_exists log_dir log_file
 
 #
 # Ok, go!

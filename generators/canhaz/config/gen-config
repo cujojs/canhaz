@@ -2,7 +2,10 @@
 
 DIR="${MODULE_PATH:-.}/.canhaz"
 FILE="$DIR/config"
-msg " $FILE"
+
+fail_if_exists "$FILE"
+
+log_file "$FILE"
 
 mkdir -p "$DIR"
 template "$MY_DIR/templates/config" > "$FILE"
