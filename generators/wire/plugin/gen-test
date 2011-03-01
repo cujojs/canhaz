@@ -1,0 +1,13 @@
+#!/bin/sh
+
+FILE="$TDIR/$MODULE.html"
+
+fail_if_exists "$FILE"
+
+# Create dir
+mkdir -p "$TDIR"
+
+export REL_WIRE_DIR=`relpath "$BASE_DIR" "$TDIR"`
+
+log_file "$MODULE_BASE/$MODULE.html"
+template "$MY_DIR/templates/test.html" > "$FILE"
