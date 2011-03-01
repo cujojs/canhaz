@@ -10,4 +10,4 @@ DIR="$BASE_DIR/$MODULE_BASE"
 mkdir -p "$DIR"
 pushd "$DIR" >> /dev/null
 
-export CSS_NAME="${MODULE//\./-}"
+export CSS_NAME="${MODULE/\./-}"
