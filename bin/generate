@@ -42,9 +42,13 @@ function fail {
 	exit $2||1
 }
 
+#
+# Loads the supplied file into the current shell context
+# Params:
+#  $1 - file path to load
+#
 function load {
 	local FILE="${GEN_BASE_DIR}/$1"
-	# echo "Loading $FILE"
 
 	# If the requested file exists, execute it
 	# If it doesn't, and error message was supplied, print it
@@ -54,7 +58,6 @@ function load {
 		err "$2"
 	fi
 }
-
 
 #
 # Function to generate content from a template
