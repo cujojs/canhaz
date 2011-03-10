@@ -22,6 +22,19 @@ It's time to stop typing it, and to canhaz it instead.
 
 ## Quick Start
 
+### Install it
+
+NOTE: Installation creates a symlink at /usr/local/bin/canhaz by default,
+so you may need to sudo to install.
+
+The superfast do-you-trust-briancavalier install:
+
+`curl 'https://github.com/briancavalier/canhaz/raw/master/install.sh' | sh`
+
+Or, if you prefer, clone it and run the `install.sh` script.
+
+### Run it
+
 `canhaz jquery:widget js/ui.myWidget`
 
 Creates the directory js, if necessary, and generates:
