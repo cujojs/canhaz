@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>${MODULE} test</title>
+	<script src="${REL_WIRE_DIR}/require.js" type="text/javascript"></script>
+	<script src="${REL_WIRE_DIR}/wire.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		wire({
+			plugins: [
+				{ module: 'wire/debug' },
+				{ module: 'wire/${PLUGIN_ID}' }
+			]
+			
+			// Add your test wiring declarations here
+			
+		}).then(
+			function(context) {
+				console.log("${MODULE}: SUCCESS", context);
+			},
+			function(err) {
+				console.log("${MODULE}: FAILED", err);
+			}
+		);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+FILE="$DIR/$MODULE.js"
+
+fail_if_exists "$FILE"
+
+# Create dir
+mkdir -p "$DIR"
+
+log_file "$MODULE_BASE/$MODULE.js"
+template "$MY_DIR/templates/plugin.js" > "$FILE"
