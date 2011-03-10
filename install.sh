@@ -61,7 +61,7 @@ mkdir -p "$EXE_DIR"
 EXE="$EXE_DIR/$ME"
 if [[ -e "$EXE" ]]
 then
-	echo "WARNING: $EXE already exists, not creating symlink" | tee -a "$LOG"
+	echo "warning: $EXE already exists, not gonna overwrite it, but it should still work" | tee -a "$LOG"
 	exit 1
 else
 	ln -s $DEST/bin/generate "$EXE"
