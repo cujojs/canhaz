@@ -1,5 +1,11 @@
 #!/bin/sh
 
+#
+# canhaz HTML 5 Boilerplate generator
+# Generates new project dir by cloning Paul Irish's
+# HTML5 Boilerplate from github
+#
+
 GIT=`which git`
 GIT_URL="https://github.com/paulirish/html5-boilerplate.git"
 
