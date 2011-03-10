@@ -15,7 +15,7 @@ all the stuff you might need to start a project, like much of the
 stuff that is provided by HTML 5 Boilerplate, for example, for an
 HTML site.
 
-Boiletplate steals minutes of your day, but does almost nothing for
+Boilerplate steals minutes of your day, but does almost nothing for
 your project.
 
 It's time to stop typing it, and to canhaz it instead.
