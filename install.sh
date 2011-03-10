@@ -61,7 +61,7 @@ mkdir -p "$EXE_DIR"
 EXE="$EXE_DIR/$ME"
 if [[ -e "$EXE" ]]
 then
-	echo "warning: $EXE already exists, not gonna overwrite it, but it should still work" | tee -a "$LOG"
+	echo "warning: $EXE already exists.  I'm not gonna overwrite it, so if it's a symlink from a previous install, it will still work." | tee -a "$LOG"
 	exit 1
 else
 	ln -s $DEST/bin/generate "$EXE"
