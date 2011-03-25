@@ -35,7 +35,7 @@ Or, if you prefer, clone it and run the `install.sh` script.
 
 ### Run it
 
-`canhaz jquery:widget js/ui.myWidget`
+`canhaz jquery.widget js/ui.myWidget`
 
 Creates the directory js, if necessary, and generates:
 
