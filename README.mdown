@@ -96,6 +96,27 @@ Makes it easy to start a new HTML5 project with HTML5 Boilerplate.  Use it like 
 
 **html.page** - Fetches html5boilerplate's index.html from github, names it with the name you specify, and again injects that name into the HTML.
 
+### jQuery
+
+Generate stub JS for jQuery plugins, and JS *and* CSS for jQuery UI widgets.  Use it like this:
+
+	canhaz jquery.plugin myPlugin
+	
+	## edit js/myPlugin.js
+	## add myWidget.js to your build process
+	
+	canhaz jquery.widget myWidget
+	
+	## edit myWidget.js
+	## edit myWidget.css
+	## add myWidget.js and myWidget.css to your build process
+
+	profit
+	
+**jquery.plugin** - Generates a JS skeleton for a simple jQuery plugin.
+
+**jquery.widget** - Generates a JS *and* CSS skeleton for a jQuery UI widget.
+
 ## License
 
 Canhaz is available under the MIT license.  See LICENSE.txt for details.
