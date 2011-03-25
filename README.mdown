@@ -92,7 +92,7 @@ Makes it easy to start a new HTML5 project with HTML5 Boilerplate.  Use it like 
 
 	profit
 
-**html.project** - Fetches html5boilerplate from github, creates a new project dir, and injects your project name into the index.html file.
+**html.boilerplate** - Fetches html5boilerplate from github, creates a new project dir, and injects your project name into the index.html file.
 
 **html.page** - Fetches html5boilerplate's index.html from github, names it with the name you specify, and again injects that name into the HTML.
 
