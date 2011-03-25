@@ -77,7 +77,7 @@ These are what you care about.  Generators generate (duh) boilerplate for you.  
 
 Makes it easy to start a new HTML5 project with HTML5 Boilerplate.  Use it like this:
 
-	canhaz html.project myNewProject
+	canhaz html.boilerplate myNewProject
 	cd myNewProject
 
 	## edit index.html...
