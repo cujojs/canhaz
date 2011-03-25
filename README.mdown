@@ -77,20 +77,20 @@ These are what you care about.  Generators generate (duh) boilerplate for you.  
 
 Makes it easy to start a new HTML5 project with HTML5 Boilerplate.  Use it like this:
 
-`canhaz html.project myNewProject
-cd myNewProject
+	canhaz html.project myNewProject
+	cd myNewProject
 
-## edit index.html...
+	## edit index.html...
 
-canhaz html.page anotherPage
+	canhaz html.page anotherPage
 
-## edit anotherPage.html...
+	## edit anotherPage.html...
 
-canhaz html.page sub/Page
+	canhaz html.page sub/Page
 
-## edit sub/Page.html...
+	## edit sub/Page.html...
 
-profit`
+	profit
 
 **html.project** - Fetches html5boilerplate from github, creates a new project dir, and injects your project name into the index.html file.
 
