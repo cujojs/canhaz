@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#
+# canhaz Mobile HTML 5 Boilerplate generator
+# Generates new project dir by cloning Paul Irish's
+# Mobile HTML5 Boilerplate from github
+#
+
+GIT_URL=${MOBILE_HTML5_BOILERPLATE_GIT_URL:-"https://github.com/shichuan/mobile-html5-boilerplate/tarball/v1.0stripped"}
+
+log_file "${MODULE_BASE}/${MODULE}/"
+
+mkdir -p "$MODULE_BASE"
+pushd "$MODULE_BASE" >> /dev/null
+
+curl -s -L "$GIT_URL" | tar -xf -
+mv ./shichuan-mobile-html5-boilerplate* "$MODULE"
+
+sed -i .orig -E -e "s/<title><\/title>/<title>$NAME<\/title>/" "$MODULE/index.html"
+
+popd >> /dev/null

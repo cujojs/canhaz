@@ -170,7 +170,10 @@ if [[ "$CONFIG" != "$MY_DIR/config" ]]; then
 fi
 
 # Figure out what type of thing we're generating
-USER_OBJECT_TYPE=${1/\.//}
+# Replace all . with / to form a dir
+# NOTE: Leading // in bash regex var replacement
+# means replace all.  Single / means replace first.
+USER_OBJECT_TYPE=${1//\.//}
 
 if [[ -d "$GEN_BASE_DIR/$USER_OBJECT_TYPE" ]]; then
 	OBJECT_TYPE=$USER_OBJECT_TYPE
