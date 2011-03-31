@@ -1,7 +1,7 @@
 #!/bin/sh
 
 CURL="`which curl` -s"
-GIT_URL="https://github.com/paulirish/html5-boilerplate/raw/master/index.html"
+GIT_URL="https://github.com/paulirish/html5-boilerplate/raw/stripped/index.html"
 
 log_file  "${MODULE_BASE}/${MODULE}.html"
 mkdir -p "$MODULE_BASE"

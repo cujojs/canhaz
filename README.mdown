@@ -77,24 +77,45 @@ These are what you care about.  Generators generate (duh) boilerplate for you.  
 
 Makes it easy to start a new HTML5 project with HTML5 Boilerplate.  Use it like this:
 
-`canhaz html.project myNewProject
-cd myNewProject
+	canhaz html.boilerplate myNewProject
+	cd myNewProject
 
-## edit index.html...
+	## edit index.html...
 
-canhaz html.page anotherPage
+	canhaz html.page anotherPage
 
-## edit anotherPage.html...
+	## edit anotherPage.html...
 
-canhaz html.page sub/Page
+	canhaz html.page sub/Page
 
-## edit sub/Page.html...
+	## edit sub/Page.html...
 
-profit`
+	profit
 
-**html.project** - Fetches html5boilerplate from github, creates a new project dir, and injects your project name into the index.html file.
+**html.boilerplate** - Fetches html5boilerplate from github, creates a new project dir, and injects your project name into the index.html file.
 
 **html.page** - Fetches html5boilerplate's index.html from github, names it with the name you specify, and again injects that name into the HTML.
+
+### jQuery
+
+Generate stub JS for jQuery plugins, and JS *and* CSS for jQuery UI widgets.  Use it like this:
+
+	canhaz jquery.plugin myPlugin
+	
+	## edit js/myPlugin.js
+	## add myWidget.js to your build process
+	
+	canhaz jquery.widget myWidget
+	
+	## edit myWidget.js
+	## edit myWidget.css
+	## add myWidget.js and myWidget.css to your build process
+
+	profit
+	
+**jquery.plugin** - Generates a JS skeleton for a simple jQuery plugin.
+
+**jquery.widget** - Generates a JS *and* CSS skeleton for a jQuery UI widget.
 
 ## License
 
