@@ -31,6 +31,8 @@ DEFAULT_TYPE="help"
 
 # Where to find generators
 GEN_BASE_DIR="$MY_DIR/generators"
+MINE_BASE_DIR="$MY_DIR/mine"
+MINE_GEN_BASE_DIR="$MINE_BASE_DIR/generators"
 
 # PHP executable
 PHP="/usr/bin/env php"

@@ -1,5 +1,4 @@
 #!/bin/sh
-
 OBJECT_TYPE="$1"
 shift
 USER_GENERATORS="$@"
@@ -40,13 +39,10 @@ function generate {
 	fi
 }
 
-#
-# Execute the specified generator script, or print an error if the script
-# doesn't exist
-#
-function execute {
+function doExecute {
 	local RET=1
-	local EXE="${GEN_BASE_DIR}/$1"
+	local EXE="$1/$2"
+
 	shift
 	
 	# If the requested file exists, execute it
@@ -60,6 +56,23 @@ function execute {
 		RET=0
 	fi
 	
+	return $RET
+
+}
+
+#
+# Execute the specified generator script, or print an error if the script
+# doesn't exist
+#
+function execute {
+	doExecute "$MINE_GEN_BASE_DIR" "$@"
+	local RET=$?
+		
+	if [ $RET -ne 0 ]; then
+		doExecute "$GEN_BASE_DIR" "$@"
+		RET=$?
+	fi
+
 	return $RET
 }
 
