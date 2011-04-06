@@ -1,0 +1,9 @@
+Congratulations, you've created your very own canhaz generator,
+and it actually works!
+
+MODULE:	      ${MODULE}
+MODULE_BASE:  ${MODULE_BASE}
+MY_DIR:	      ${MY_DIR}
+TEMPLATE_DIR: ${TEMPLATE_DIR}
+CANHAZ_DIR:   ${CANHAZ_DIR}
+VERSION:      ${VERSION}

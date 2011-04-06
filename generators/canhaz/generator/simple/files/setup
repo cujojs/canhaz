@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# A list of things to generate
+# Your generate script will be called once for each thing listed
+# here, passing the thing as the command line arg.
+#
+# For example, say you are creating a widget generator, and
+# your generator can generate a Javascript widget stub and a css
+# stub for the widget, you might list:
+# GENERATORS="js css"
+# 
+# When you run canhaz my.widget, your generate script will be invoked
+# twice:
+# 1. generate js
+# 2. generate css
+GENERATORS="txt"
+
+# Dir containing templates
+TEMPLATE_DIR="$MY_DIR/templates"
+
+DIR="$BASE_DIR/$MODULE_BASE"
+
+# Create output dir
+mkdir -p "$DIR"
+pushd "$DIR" >> /dev/null
+
+export TEMPLATE_DIR

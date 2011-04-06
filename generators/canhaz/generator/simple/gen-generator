@@ -1,0 +1,8 @@
+#!/bin/sh
+
+fail_if_exists "$MODULE_BASE/$MODULE"
+
+log_dir "$MODULE_BASE/$MODULE"
+
+mkdir -p "$MODULE_BASE"
+cp -fR "$MY_DIR/files" "$MODULE_BASE/$MODULE"

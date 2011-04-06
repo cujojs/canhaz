@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Do any generator-specific teardown here.
+# This will be run after your generate script has been called.
+
+popd >> /dev/null
+
+cat "$MODULE_BASE/$MODULE.txt"

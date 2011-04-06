@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#
+# This is a simple generator example that will generate
+# files from templates in TEMPLATE_DIR
+#
+
+fail_if_exists "$MODULE_BASE/$MODULE.$1"
+
+log_file "$MODULE_BASE/$MODULE.$1"
+template "$TEMPLATE_DIR/template.$1" > "$MODULE.$1"
