@@ -1,7 +1,7 @@
 #!/bin/sh
 OBJECT_TYPE="$1"
 shift
-USER_GENERATORS="$@"
+GENERATOR_PARAMS="$@"
 
 #
 # Outputs the relative path between two paths, specifically, from
@@ -23,16 +23,21 @@ function relpath {
 # Params:
 # $1 - type of thing, e.g. "view"
 # $2 - generator, e.g. "html"
+# $3... - params to be passed to the generator
 #
 function generate {
-	local GEN_EXE="$1/gen-$2"
+
+	local GEN="$1"
+	local ASPECT="$2"
+	local GEN_EXE="$GEN/gen-$ASPECT"
+	shift;shift
 
 	# Try to execute the specific gen type, but if that doesn't exist or fails,
 	# try to execute the generic generator for this object type and pass it
 	# the aspect to be generated.
-	execute "$GEN_EXE"
+	execute "$GEN_EXE" "$@"
 	if [ $? -ne 0 ]; then
-		execute "$1/generate" "$2"
+		execute "$GEN/generate" "$ASPECT" "$@"
 		if [ $? -ne 0 ]; then
 			err "Don't know how to generate $2 for $1"
 		fi
@@ -43,7 +48,7 @@ function doExecute {
 	local RET=1
 	local EXE="$1/$2"
 
-	shift
+	shift;shift
 	
 	# If the requested file exists, execute it
 	# If it doesn't return an error
@@ -114,7 +119,9 @@ export MY_DIR="${GEN_BASE_DIR}/$OBJECT_TYPE"
 load "$OBJECT_TYPE/setup"
 
 # Check to see if user has overridden the list of generators
-GENERATORS=${USER_GENERATORS:-$GENERATORS}
+# TODO: Parse user-specified generator list from OBJECT_TYPE when
+# it is of the form my.object.type:generator1,generator2,etc
+#GENERATORS=${USER_GENERATORS:-$GENERATORS}
 
 # If there are no generators to run, exit with an error
 if [[ "$GENERATORS" = "" ]]; then
@@ -124,7 +131,7 @@ fi
 # Run all generators
 for GEN in $GENERATORS
 do
-	generate "$OBJECT_TYPE" "$GEN"
+	generate "$OBJECT_TYPE" "$GEN" "$GENERATOR_PARAMS"
 done
 
 # Run type-specific teardown if present
