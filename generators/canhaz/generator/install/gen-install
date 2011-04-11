@@ -11,16 +11,20 @@ else
 fi
 
 function localInstall {
-	fail_if_exists $1
-
-	log_dir "$1"
-
 	mkdir -p "$1"
 	rsync -a "$2/" "$1/"
 }
 
 function githubInstall {
-	echo github $1 $2
+	local TMP="/tmp/$ME.$$"
+	git clone "$2" "$TMP"
+	\rm -rf "$TMP/.git*"
+	localInstall "$1" "$TMP"
 }
 
+fail_if_exists $1
+log_dir "$DEST"
+
 "$TYPE" "$DEST" "$SRC"
+
+msg "$MODULE_PATH installed"
