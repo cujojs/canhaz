@@ -47,7 +47,6 @@ function generate {
 function doExecute {
 	local RET=1
 	local EXE="$1/$2"
-
 	shift;shift
 	
 	# If the requested file exists, execute it
@@ -70,13 +69,13 @@ function doExecute {
 # doesn't exist
 #
 function execute {
-	doExecute "$MINE_GEN_BASE_DIR" "$@"
-	local RET=$?
+	# doExecute "$MINE_GEN_BASE_DIR" "$@"
+	# local RET=$?
 		
-	if [ $RET -ne 0 ]; then
+	# if [ $RET -ne 0 ]; then
 		doExecute "$GEN_BASE_DIR" "$@"
-		RET=$?
-	fi
+		local RET=$?
+	# fi
 
 	return $RET
 }
@@ -122,11 +121,6 @@ load "$OBJECT_TYPE/setup"
 # TODO: Parse user-specified generator list from OBJECT_TYPE when
 # it is of the form my.object.type:generator1,generator2,etc
 #GENERATORS=${USER_GENERATORS:-$GENERATORS}
-
-# If there are no generators to run, exit with an error
-if [[ "$GENERATORS" = "" ]]; then
-	fail "No generators specified on command line and no default generators configured for $OBJECT_TYPE"
-fi
 
 # Run all generators
 for GEN in $GENERATORS

@@ -1,0 +1,26 @@
+#!/bin/sh
+
+DIR="${MODULE_PATH//\.//}"
+DEST="$MINE_GEN_BASE_DIR/$DIR"
+SRC=${1:-.}
+
+if [[ -d "$SRC" ]]; then
+	TYPE="localInstall"
+else
+	TYPE="githubInstall"
+fi
+
+function localInstall {
+	fail_if_exists $1
+
+	log_dir "$1"
+
+	mkdir -p "$1"
+	rsync -a "$2/" "$1/"
+}
+
+function githubInstall {
+	echo github $1 $2
+}
+
+"$TYPE" "$DEST" "$SRC"

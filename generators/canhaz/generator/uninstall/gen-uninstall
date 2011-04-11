@@ -1,0 +1,11 @@
+#!/bin/sh
+
+DIR="${MODULE_PATH//\.//}"
+TARGET="$MINE_GEN_BASE_DIR/$DIR"
+
+if [[ -e "$TARGET" ]]; then
+	log_dir "$TARGET"
+	rm -rf "$TARGET"
+else
+	fail "No generator named $DIR to uninstall"
+fi
