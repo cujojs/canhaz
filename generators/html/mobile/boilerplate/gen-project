@@ -6,7 +6,7 @@
 # Mobile HTML5 Boilerplate from github
 #
 
-GIT_URL=${MOBILE_HTML5_BOILERPLATE_GIT_URL:-"https://github.com/shichuan/mobile-html5-boilerplate/tarball/v1.0stripped"}
+GIT_URL=${MOBILE_HTML5_BOILERPLATE_GIT_URL:-"https://github.com/shichuan/mobile-html5-boilerplate/zipball/v1.1stripped"}
 
 log_file "${MODULE_BASE}/${MODULE}/"
 

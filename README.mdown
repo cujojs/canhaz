@@ -1,4 +1,5 @@
-# canhaz
+canhaz
+======
 
 Canhaz is a project bootstrapping tool for generating stub files,
 similar to generator tools found in frameworks such as Ruby on Rails.
@@ -20,7 +21,8 @@ your project.
 
 It's time to stop typing it, and to canhaz it instead.
 
-## Quick Start
+Quick Start
+===========
 
 ### Install it
 
@@ -33,7 +35,8 @@ The superfast do-you-trust-briancavalier install:
 
 Or, if you prefer, clone it and run the `install.sh` script.
 
-### Run it
+Run it
+------
 
 `canhaz jquery.widget js/ui.myWidget`
 
@@ -42,11 +45,13 @@ Creates the directory js, if necessary, and generates:
 - ui.myWidget.js  - jQuery widget skeleton, fill in your code!
 - ui.myWidget.css - CSS skeleton for your widget
 
-## Usage
+Usage
+=====
 
 `canhaz [--force] module_type module_path [generators]`
 
-## Options
+Options
+=======
 
 `--force`
 Force overwriting an existing dir.  By default canhaz will not overwrite
@@ -69,11 +74,13 @@ example, when generating a view, if you don't need a strings file, you
 could do: canhaz my/view/MyView js scss css html test (i.e. leaving
 out strings)
 
-## Generators
+Generators
+==========
 
 These are what you care about.  Generators generate (duh) boilerplate for you.  Here's what you get out of the box:
 
-### HTML5 Boilerplate
+HTML5 Boilerplate
+-----------------
 
 Makes it easy to start a new HTML5 project with HTML5 Boilerplate.  Use it like this:
 
@@ -96,7 +103,28 @@ Makes it easy to start a new HTML5 project with HTML5 Boilerplate.  Use it like 
 
 **html.page** - Fetches html5boilerplate's index.html from github, names it with the name you specify, and again injects that name into the HTML.
 
-### jQuery
+HTML5 Mobile Boilerplate
+------------------------
+
+Like the HTML5 Boilerplate generator, but for *mobile*!
+
+	canhaz html.mobile.boilerplate myNewMobileProject
+	cd myNewMobileProject
+
+	## edit index.html...
+
+	canhaz html.mobile.page anotherMobilePage
+
+	## edit anotherMobilePage.html...
+
+	profit
+
+**html.mobile.boilerplate** - Fetches mobileboilerplate from github, creates a new project dir, and injects your project name into the index.html file.
+
+**html.mobile.page** - Fetches mobileboilerplate's index.html from github, names it with the name you specify, and again injects that name into the HTML.
+
+jQuery
+------
 
 Generate stub JS for jQuery plugins, and JS *and* CSS for jQuery UI widgets.  Use it like this:
 
@@ -117,6 +145,7 @@ Generate stub JS for jQuery plugins, and JS *and* CSS for jQuery UI widgets.  Us
 
 **jquery.widget** - Generates a JS *and* CSS skeleton for a jQuery UI widget.
 
-## License
+License
+=======
 
 Canhaz is available under the MIT license.  See LICENSE.txt for details.
